@@ -6,11 +6,6 @@ const ACTION_TYPES = {
   REMOVE: 'REMOVE',
 }
 
-const initialState = {
-  items: [],
-  totalAmount: 0
-};
-
 const cartReducer = (state, action) => {
   switch (action.type)  {
     case ACTION_TYPES.ADD: {
@@ -56,10 +51,15 @@ const cartReducer = (state, action) => {
 }
 
 const CartContextProvider = (props) => {
+  const initialState = {
+    items: [],
+    totalAmount: 0
+  };
+
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addItemToCartHandler = item => {
-    dispatch({type: ACTION_TYPES.ADD, payload:item})
+    dispatch({type: ACTION_TYPES.ADD, payload:item});
   };
 
   const removeItemFromCartHandler = id => {
