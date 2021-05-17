@@ -11,6 +11,17 @@
     padding: 0;
 }
 
+.meals .loading {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.meals .fetchError {
+    color: red;
+    text-align: center;
+}
+
+
 @keyframes meals-appear {
     from {
         opacity: 0;
@@ -22,3 +33,4 @@
         transform: translateY(0);
     }
 }
+

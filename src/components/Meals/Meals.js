@@ -7,7 +7,7 @@ const Meals = () => {
 
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [httpError, setHttpError] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,20 +23,21 @@ const Meals = () => {
           loadedMeals.push(meal);
         }
         setMeals(loadedMeals);
-        setIsLoading(false);
       } catch (e) {
-        console.log(e.message )
+        setHttpError(e.message);
+      }
+      finally {
+        setIsLoading(false);
       }
     }
     fetchData();
   }, []);
 
-const mealsList = meals.map(meal=> <Meal key={meal.key} meal={meal}/>)
-
   return (
     <Card className={classes.meals}>
-      {isLoading && <p> Loading... </p>}
-      {!isLoading && <ul> {meals.map(meal=> <Meal key={meal.id} meal={meal}/>) }</ul>}
+      {isLoading && <p className={classes.loading}> Loading... </p>}
+      {httpError && <p className={classes.fetchError}>{httpError}</p>}
+      {!isLoading && !httpError && <ul> {meals.map(meal=> <Meal key={meal.id} meal={meal}/>) }</ul>}
     </Card>
   );
 }
