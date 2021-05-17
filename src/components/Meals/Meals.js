@@ -33,7 +33,7 @@ const Meals = () => {
 
   return (
     <Card className={classes.meals}>
-      {isLoading && <p> Getting Meals List from Firabase... </p>}
+      {isLoading && <p> Loading... </p>}
       {!isLoading && <ul> {meals.map(meal=> <Meal key={meal.key} meal={meal}/>) }</ul>}
     </Card>
   );
