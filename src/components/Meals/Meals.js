@@ -25,16 +25,18 @@ const Meals = () => {
         setMeals(loadedMeals);
         setIsLoading(false);
       } catch (e) {
-        console.log(e.message)
+        console.log(e.message )
       }
     }
     fetchData();
   }, []);
 
+const mealsList = meals.map(meal=> <Meal key={meal.key} meal={meal}/>)
+
   return (
     <Card className={classes.meals}>
       {isLoading && <p> Loading... </p>}
-      {!isLoading && <ul> {meals.map(meal=> <Meal key={meal.key} meal={meal}/>) }</ul>}
+      {!isLoading && <ul> {meals.map(meal=> <Meal key={meal.id} meal={meal}/>) }</ul>}
     </Card>
   );
 }
