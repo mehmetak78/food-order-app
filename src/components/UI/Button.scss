@@ -6,11 +6,13 @@
   border-radius: 20px;
   font-weight: bold;
   margin: 0.25rem;
-}
-.btn:hover, .btnactive {
-  background-color: #641e03;
-  border-color: #641e03;
-  color: white;
+
+  &:hover,
+  &active {
+    background-color: #641e03;
+    border-color: #641e03;
+    color: white;
+  }
 }
 
 .btn1 {
@@ -38,4 +40,3 @@
   padding: 0.25rem;
 }
 
-/*# sourceMappingURL=Button.module.css.map */
