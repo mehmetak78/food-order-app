@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './css/Button.module.css';
-
+//TODO: Add SCSS to other css styles.
 const Button = (props) => {
   let className  =classes.btn;
 
