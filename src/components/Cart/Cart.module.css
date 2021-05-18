@@ -18,3 +18,8 @@
 .actions {
     text-align: right;
 }
+
+.fetchError {
+    color: red;
+    text-align: center;
+}

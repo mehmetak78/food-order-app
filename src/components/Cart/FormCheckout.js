@@ -14,8 +14,6 @@ const FormCheckout = (props) => {
   const postalCodeClasses = name.hasError ? `${classes['form-control']} {classes.invalid}` : classes['form-control'];
   const cityClasses = name.hasError ? `${classes['form-control']} {classes.invalid}` : classes['form-control'];
 
-
-
   const submitHandler = (e) => {
     e.preventDefault();
     const userData = {
@@ -76,7 +74,7 @@ const FormCheckout = (props) => {
         </div>
       </div>
       <div className={classes["form-actions"]}>
-        <Button styleType = 'btn2' type='button' onClick={props.onClose}>Cancel</Button>
+        <Button styletype = 'btn2' type='button' onClick={props.onClose}>Cancel</Button>
         <Button>Confirm</Button>
       </div>
     </form>

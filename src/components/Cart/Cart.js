@@ -12,6 +12,7 @@ const Cart = (props) => {
   const [isCheckoutFormOpen, setIsCheckoutFormOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+  const [httpError, setHttpError] = useState(null);
 
   const cartItemRemoveHandler = id => {
     cartContext.removeItem(id)
@@ -24,7 +25,6 @@ const Cart = (props) => {
   const orderClickHandler = () => {
     setIsCheckoutFormOpen(true)
   }
-
 
   const sendOrder = async (userData) => {
     setIsSubmitting(true);
@@ -40,19 +40,19 @@ const Cart = (props) => {
         throw  new Error('Cannot send data to the server')
       }
       const data = await response.json();
-      setDidSubmit(true);
+      console.log(data);
       cartContext.clearCart();
-
     } catch (e) {
-      console.log('Error')
+      setHttpError(e.message);
     } finally {
       setIsSubmitting(false);
+      setDidSubmit(true);
     }
   }
 
   const submitOrderHandler = (userData) => {
     console.log(userData);
-    sendOrder(userData)
+    sendOrder(userData);
   }
 
   const cartItems =
@@ -66,7 +66,7 @@ const Cart = (props) => {
 
   const modalActions =
     <div className={classes.actions}>
-      <Button styleType={'btn2'} onClick={props.onClose}>Close</Button>
+      <Button styletype={'btn2'} onClick={props.onClose}>Close</Button>
       {cartContext.items.length > 0 && <Button onClick={orderClickHandler}>Order</Button>}
     </div>
 
@@ -84,7 +84,8 @@ const Cart = (props) => {
   const submittingModalContent = <p> Submitting Order Data...</p>
 
   const ssubmittedModalContent = <Fragment>
-    <p> Successfully Sent Order Data...</p>
+    {!httpError && <p> Successfully Sent Order Data...</p>}
+    {httpError && <p className={classes.fetchError}>{httpError}</p>}
     <div className={classes.actions}>
       <Button onClick={props.onClose}>Close</Button>
     </div>
